@@ -13,14 +13,14 @@ class HomeDetailScreen extends StatefulWidget {
 class _HomeDetailScreenState extends State<HomeDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return  SafeArea(
       child: Scaffold(
           body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            THeaderHDetail(),
-            TDesc(),
+            const THeaderHDetail(),
+            const TDesc(),
             TContact(),
           ],
         ),

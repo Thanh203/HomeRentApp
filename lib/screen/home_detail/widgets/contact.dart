@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:home_rent_app/utlis/constants/colors.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class TContact extends StatelessWidget {
-  const TContact({super.key});
+  final LatLng _location = const LatLng(37.7749, -122.4194);
 
   @override
   Widget build(BuildContext context) {
@@ -162,14 +163,25 @@ class TContact extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 25),
                 child: Stack(
                   children: [
-                    SizedBox(
-                      height: 80,
-                      width: 380,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: const Image(
-                          image: AssetImage('assets/image/map.png'),
-                          fit: BoxFit.cover,
+                    Container(
+                      child: SizedBox(
+                        height: 80,
+                        width: double.infinity,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: GoogleMap(
+                            initialCameraPosition: CameraPosition(
+                              target: _location,
+                              zoom: 14.0,
+                            ),
+                            markers: {
+                              Marker(
+                                markerId: const MarkerId('location'),
+                                position: _location,
+                              ),
+                            },
+                            zoomControlsEnabled: false,
+                          ),
                         ),
                       ),
                     ),
@@ -226,7 +238,7 @@ class TContact extends StatelessWidget {
                               gradient: const LinearGradient(
                                 colors: [
                                   Color.fromRGBO(160, 218, 251, 1),
-                                  Color.fromRGBO( 10, 142, 217, 1),
+                                  Color.fromRGBO(10, 142, 217, 1),
                                 ],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
@@ -254,7 +266,7 @@ class TContact extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
